@@ -1,0 +1,11 @@
+.container {
+    background-color: red;
+}
+
+.title {
+    color: white;
+}
+
+:global(.title) {
+    color: yellow;
+}

@@ -1,11 +1,30 @@
-.container {
-    background-color: red;
+:root {
+  --lilac: #ebecf3;
+  --lavender: #c6bcf9;
+  --purple: #6355ab;
+  --peach: #ffc39e;
+  --rose: #ffccd1;
+  --gray: #f1f2f7;
+  --magenta: #0b113c;
+  --babyblue: #d6f1fe;
+  --myFont: "Inconsolata", monospace;
+}
+
+body {
+  background-color: var(--lilac);
+  font-family: var(--myFont);
+}
+
+.app {
 }
 
 .title {
-    color: white;
 }
 
-:global(.title) {
+/* :global(.title) {
     color: yellow;
+} */
+
+/* Todo lists styles */
+.allLists {
 }

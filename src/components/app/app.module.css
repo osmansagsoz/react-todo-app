@@ -21,10 +21,15 @@ body {
 }
 
 .app {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+button {
+  cursor: pointer;
+  background: 0;
+  padding: 0;
+  border: 0;
 }
 
 /* Header designs */
@@ -36,12 +41,12 @@ header {
 }
 
 .title {
-  border: 2px solid red;
-  
+  margin-top: 3rem;
 }
 
 .headerP {
   margin-top: 0;
+  color: var(--purple);
 }
 
 /* loader design */
@@ -79,17 +84,268 @@ header {
   display: flex;
 }
 
-/* Todo lists styles */
-.allLists {
+.icon {
+  font-size: 1.5rem;
 }
 
-.container {
+/* Todo Area Design */
+.todoArea {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0;
+}
+
+.inputField {
+  /* display: block; */
+  height: 100px;
+  width: 100%;
+  min-width: 140px;
+  max-width: 280px;
+}
+
+.mainForm {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  position: relative;
+}
+
+.mainInput {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  color: var(--magenta);
+  border-radius: 0.2em;
+  border: 2px solid transparent;
+  outline: none;
+  font-size: 18px;
+  transition: all 0.2s;
+  box-shadow: 0 0 1px var(--lavender);
+  padding: 0;
+}
+
+.mainInput:hover {
+  cursor: pointer;
+  background-color: var(--gray);
+}
+
+.mainInput:focus {
+  cursor: text;
+  background-color: white;
+  border-color: var(--purple);
+}
+
+.extraField {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0;
+}
+
+.todoTags {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+/* Lists styles */
+.allLists {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.todoListsTitle {
+  margin-bottom: 0;
+}
+
+.todoLists {
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.activeList {
+  font-weight: 700;
+  color: var(--purple);
+}
+
+.newList {
+  background: transparent;
+  border: 0;
+  color: var(--magenta);
+  border-bottom: 1px solid currentColor;
+  outline: none;
+  transition: border-bottom 150ms ease-in;
+  font-size: 0.9rem;
+}
+
+.newList:focus {
+  border-bottom-width: 2.5px;
+}
+.newList:focus::placeholder {
+  opacity: 0.2;
+}
+
+.listButton {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-left: 0.2em;
+  transition: opacity 200ms ease-in;
+}
+
+.listButton:hover {
+  opacity: 0.7;
+}
+
+/* Todo list design */
+.todoListArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
 }
 
 .todoList {
+  background-color: var(--rose);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4%;
 }
 
-footer {
+.todoListTitle {
+  margin: 0rem;
+  padding: 0.5rem 0 0.5rem 0.3rem;
+  width: 100%;
+  background-color: var(--gray);
+  border-radius: 4%;
+}
+
+.todoListBody {
+  width: 100%;
+}
+
+.todos li {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  margin-bottom: 0.2em;
+}
+.todos {
+  list-style-type: none;
+  padding-left: 0.1rem;
+}
+
+/* checkbox design */
+input[type="checkbox"] {
+  display: inline-block;
+  opacity: 0;
+  margin: 0;
+  transform: scale(1.7);
+  position: relative;
+  top: 0.4em;
+  left: 0.4em;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked + .customCheckbox {
+  background: var(--magenta);
+  box-shadow: inset 0 0 0px 1.5px var(--rose);
+}
+
+.customCheckbox {
+  border: 0.1em solid var(--magenta);
+  border-radius: 50%;
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin: 0.4em 0 0 0;
+  color: transparent;
+  text-align: center;
+  font-size: 20px;
+  background-color: currentColor;
+  padding: 0;
+  position: relative;
+  right: 0.3em;
+}
+
+.todos label {
+  min-width: 250px;
+  /* max-width: 410px; */
+  margin: 0 0 0.2em 0;
+  padding: 0.2em;
+  text-align: left;
+  background-color: transparent;
+  border-radius: 0.2em;
+  position: relative;
+  display: inline-block;
+}
+
+.todos label::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: -10%;
+  height: 2px;
+  background: var(--gray);
+  opacity: 0.5;
+}
+
+.todoSpan {
+  position: relative;
+  display: inline-block;
+}
+
+.editForm {
+  display: inline-block;
+  opacity: 0;
+  width: 100%;
+  height: 95%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-family: var(--myFont);
+  /* font-size: 19px; */
+  /* color: var(--bblue); */
+  background-color: white;
+  border-radius: 0.2em;
+  position: absolute;
+  left: 0px;
+  top: 0;
+  overflow: hidden;
+}
+
+.editInput {
+  width: 100%;
+  height: 100%;
+}
+
+.showEditForm {
+  opacity: 100%;
+}
+
+/* footer design */
+footer h3 {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.foot {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    gap: 16px;
 }
 
 @keyframes bouncer {

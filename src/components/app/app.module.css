@@ -3,28 +3,100 @@
   --lavender: #c6bcf9;
   --purple: #6355ab;
   --peach: #ffc39e;
+  --orange: #ff8f4f;
   --rose: #ffccd1;
   --gray: #f1f2f7;
   --magenta: #0b113c;
   --babyblue: #d6f1fe;
   --myFont: "Inconsolata", monospace;
 }
-
-body {
-  background-color: var(--lilac);
-  font-family: var(--myFont);
-}
-
-.app {
-}
-
-.title {
-}
-
 /* :global(.title) {
     color: yellow;
 } */
 
+body {
+  background-color: var(--lilac);
+  font-family: var(--myFont);
+  color: var(--magenta);
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  align-items: center;
+}
+
+/* Header designs */
+header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  border: 2px solid red;
+  
+}
+
+.headerP {
+  margin-top: 0;
+}
+
+/* loader design */
+.loader {
+  display: none;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 80px;
+  height: 80px;
+  border: 2px solid green;
+}
+
+.loader div {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--orange);
+  animation: bouncer 0.5s cubic-bezier(0.19, 0.57, 0.3, 0.98) infinite alternate;
+}
+
+.loader div:nth-child(2) {
+  animation-delay: 0.1s;
+  opacity: 0.8;
+}
+.loader div:nth-child(3) {
+  animation-delay: 0.2s;
+  opacity: 0.6;
+}
+.loader div:nth-child(4) {
+  animation-delay: 0.3s;
+  opacity: 0.4;
+}
+
+.openLoader {
+  display: flex;
+}
+
 /* Todo lists styles */
 .allLists {
+}
+
+.container {
+}
+
+.todoList {
+}
+
+footer {
+}
+
+@keyframes bouncer {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-80px);
+  }
 }

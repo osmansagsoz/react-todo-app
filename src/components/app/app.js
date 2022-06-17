@@ -1,4 +1,7 @@
 import css from "./app.module.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList, faCheckDouble } from '@fortawesome/free-solid-svg-icons';
+import { cx } from 'classnames';
 
 console.log(css);
 export const App = () => {
@@ -8,7 +11,13 @@ export const App = () => {
         <header>
           <h1 className={css.title}>React Todo App</h1>
           <p className={css.headerP}>Add your first todo!</p>
-          <div className={css.loader}></div>
+          <div className={css.loader}>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <FontAwesomeIcon icon={faCheckDouble} />
         </header>
         <div className={css.todoArea}>
           <div className={css.inputField}>
@@ -29,6 +38,7 @@ export const App = () => {
           </div>
         </div>
       </section>
+      <FontAwesomeIcon icon={faList} />
       <section className={css.allLists}>
         <h2 className={css.todoListsTitle}>My Lists</h2>
         <ul className={css.todoLists}>
@@ -36,7 +46,7 @@ export const App = () => {
           <li>Daily Routine</li>
           <li>Grocery</li>
         </ul>
-        <form action="">
+        <form>
           <input
             type="text"
             className={css.newList}

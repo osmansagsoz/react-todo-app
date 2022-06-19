@@ -7,6 +7,31 @@ console.log(css);
 export const App = () => {
   return (
     <div className={css.app}>
+      <section className={css.allLists}>
+        <input type="checkbox" id="open" className={css.sideBarInput} />
+        <label htmlFor="open">
+          <FontAwesomeIcon icon={faList} />
+          <h3 className={css.todoListsTitle}>My Lists</h3>
+        </label>
+        <div className={css.dropdown}>
+          <ul className={css.todoLists}>
+            <li className={css.activeList}>Meetings</li>
+            <li>Daily Routine</li>
+            <li>Grocery</li>
+          </ul>
+          <form>
+            <input
+              type="text"
+              className={css.newList}
+              placeholder="New list name"
+              aria-label="New list name"
+            />
+            <button className={css.listButton} aria-label="Create new list">
+              +
+            </button>
+          </form>
+        </div>
+      </section>
       <section className={css.container}>
         <header>
           <h1 className={css.title}>React Todo App</h1>
@@ -37,26 +62,6 @@ export const App = () => {
             </form>
           </div>
         </div>
-      </section>
-      <section className={css.allLists}>
-        <FontAwesomeIcon icon={faList} />
-        <h2 className={css.todoListsTitle}>My Lists</h2>
-        <ul className={css.todoLists}>
-          <li className={css.activeList}>Meetings</li>
-          <li>Daily Routine</li>
-          <li>Grocery</li>
-        </ul>
-        <form>
-          <input
-            type="text"
-            className={css.newList}
-            placeholder="New list name"
-            aria-label="New list name"
-          />
-          <button className={css.listButton} aria-label="Create new list">
-            +
-          </button>
-        </form>
       </section>
       <section className={css.todoListArea}>
         <div className={css.todoList}>

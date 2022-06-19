@@ -364,6 +364,7 @@ footer h3 {
   justify-content: center;
   flex-flow: row wrap;
   gap: 16px;
+  list-style-type: none;
 }
 
 @keyframes bouncer {
@@ -373,4 +374,46 @@ footer h3 {
   to {
     transform: translateY(-80px);
   }
+}
+
+@media (min-width: 550px) {
+    .dropdown {
+        height: 100%;
+    }
+
+    .app {
+        display: grid;
+        height: 100vh;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-areas: 
+            "list . header header header . ."
+            "list . header header header . ."
+            "list todo todo todo todo todo todo"
+            "list todo todo todo todo todo todo"
+            "list todo todo todo todo todo todo"
+            "footer footer footer footer footer footer footer"
+    }
+
+    .allLists {
+        grid-area: list;
+        margin-top: 1.5rem;
+        margin-left: 1rem;
+    }
+
+    .container {
+        grid-area: header;
+    }
+
+    .todoListArea {
+        grid-area: todo;
+        grid-column: span 2;
+    }
+
+    footer {
+        grid-area: footer;
+    }
+
+    .inputField {
+        min-width: 500px;
+    }
 }

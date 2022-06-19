@@ -1,6 +1,7 @@
 import css from "./app.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList, faCheckDouble } from "@fortawesome/free-solid-svg-icons";
+import { faLinkedinIn, faGithub, faCodepen } from '@fortawesome/free-brands-svg-icons'
 import { cx } from "classnames";
 
 console.log(css);
@@ -17,6 +18,10 @@ export const App = () => {
           <ul className={css.todoLists}>
             <li className={css.activeList}>Meetings</li>
             <li>Daily Routine</li>
+            <li>Grocery</li>
+            <li>Grocery</li>
+            <li>Grocery</li>
+            <li>Grocery</li>
             <li>Grocery</li>
           </ul>
           <form>
@@ -88,6 +93,36 @@ export const App = () => {
                   </form>
                 </label>
               </li>
+              <li className="">
+                <input type="checkbox" />
+                <span className={css.customCheckbox}></span>
+                <label className="">
+                  <span className={css.todoSpan}>Meeting with manager</span>
+                  <form className={css.editForm}>
+                    <input type="text" className={css.editInput} />
+                  </form>
+                </label>
+              </li>
+              <li className="">
+                <input type="checkbox" />
+                <span className={css.customCheckbox}></span>
+                <label className="">
+                  <span className={css.todoSpan}>Meeting with manager</span>
+                  <form className={css.editForm}>
+                    <input type="text" className={css.editInput} />
+                  </form>
+                </label>
+              </li>
+              <li className="">
+                <input type="checkbox" />
+                <span className={css.customCheckbox}></span>
+                <label className="">
+                  <span className={css.todoSpan}>Meeting with manager</span>
+                  <form className={css.editForm}>
+                    <input type="text" className={css.editInput} />
+                  </form>
+                </label>
+              </li>
             </ul>
           </div>
           <div className={css.deleteArea}>
@@ -109,20 +144,17 @@ export const App = () => {
               target="_blank"
               rel="noreferrer"
             >
-              <span className="fa-brands fa-linkedin-in" aria-hidden="true"></span>
-              <span className="sr-only">Linked in</span>
+              <FontAwesomeIcon icon={faLinkedinIn} />
             </a>
           </li>
           <li>
             <a href="https://github.com/osmansagsoz" target="_blank" rel="noreferrer">
-              <span className="fa-brands fa-github"></span>
-              <span className="sr-only">Github</span>
+            <FontAwesomeIcon icon={faGithub} />
             </a>
           </li>
           <li>
             <a href="https://codepen.io/osmansagsoz" target="_blank" rel="noreferrer">
-              <span className="fa-brands fa-codepen"></span>
-              <span className="sr-only">Codepen</span>
+            <FontAwesomeIcon icon={faCodepen} />
             </a>
           </li>
         </ul>

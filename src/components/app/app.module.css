@@ -10,6 +10,10 @@
   --babyblue: #d6f1fe;
   --myFont: "Inconsolata", monospace;
 }
+
+* {
+  box-sizing: border-box;
+}
 /* :global(.title) {
     color: yellow;
 } */
@@ -126,6 +130,7 @@ header {
   transition: all 0.2s;
   box-shadow: 0 0 1px var(--lavender);
   padding: 0;
+  text-indent: 5px;
 }
 
 .mainInput:hover {
@@ -377,43 +382,43 @@ footer h3 {
 }
 
 @media (min-width: 550px) {
-    .dropdown {
-        height: 100%;
-    }
+  .dropdown {
+    height: 100%;
+  }
 
-    .app {
-        display: grid;
-        height: 100vh;
-        grid-template-columns: repeat(7, 1fr);
-        grid-template-areas: 
-            "list . header header header . ."
-            "list . header header header . ."
-            "list todo todo todo todo todo todo"
-            "list todo todo todo todo todo todo"
-            "list todo todo todo todo todo todo"
-            "footer footer footer footer footer footer footer"
-    }
+  .app {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-areas:
+      "list . header header header . ."
+      "list . header header header . ."
+      "list todo todo todo todo todo todo"
+      "list todo todo todo todo todo todo"
+      "list todo todo todo todo todo todo"
+      "footer footer footer footer footer footer footer";
+  }
 
-    .allLists {
-        grid-area: list;
-        margin-top: 1.5rem;
-        margin-left: 1rem;
-    }
+  .allLists {
+    grid-area: list;
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+  }
 
-    .container {
-        grid-area: header;
-    }
+  .container {
+    grid-area: header;
+  }
 
-    .todoListArea {
-        grid-area: todo;
-        grid-column: span 2;
-    }
+  .todoListArea {
+    grid-area: todo;
+    grid-column: span 2;
+  }
 
-    footer {
-        grid-area: footer;
-    }
+  footer {
+    grid-area: footer;
+  }
 
-    .inputField {
-        min-width: 500px;
-    }
+  .inputField {
+    min-width: 500px;
+  }
 }

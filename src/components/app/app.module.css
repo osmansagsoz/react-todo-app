@@ -174,20 +174,22 @@ header {
   cursor: pointer;
 }
 
-.sideBarInput {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  opacity: 0%;
+.listsButton {
+  margin: 0.2em 0 0 0.2em;
+  transition: opacity 0.2s ease-in;
 }
+.listsButton:hover {
+  opacity: 0.7;
+}
+
 .dropdown {
   width: 100%;
   height: 0px;
   overflow: hidden;
-  transition: height 0.4s ease;
+  transition: height 0.4s ease-in-out;
 }
 
-#open:checked + .dropdown {
+.dropdownOpen {
   height: 200px;
 }
 

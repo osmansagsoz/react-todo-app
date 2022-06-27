@@ -3,40 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList, faCheckDouble } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedinIn, faGithub, faCodepen } from '@fortawesome/free-brands-svg-icons'
 import { cx } from "classnames";
+import AllLists from '../allLists/allLists'
 
 console.log(css);
 export const App = () => {
   return (
     <div className={css.app}>
-      <section className={css.allLists}>
-        <input type="checkbox" id="open" className={css.sideBarInput} />
-        <label htmlFor="open">
-          <FontAwesomeIcon icon={faList} />
-          <h3 className={css.todoListsTitle}>My Lists</h3>
-        </label>
-        <div className={css.dropdown}>
-          <ul className={css.todoLists}>
-            <li className={css.activeList}>Meetings</li>
-            <li>Daily Routine</li>
-            <li>Grocery</li>
-            <li>Grocery</li>
-            <li>Grocery</li>
-            <li>Grocery</li>
-            <li>Grocery</li>
-          </ul>
-          <form>
-            <input
-              type="text"
-              className={css.newList}
-              placeholder="New list name"
-              aria-label="New list name"
-            />
-            <button className={css.listButton} aria-label="Create new list">
-              +
-            </button>
-          </form>
-        </div>
-      </section>
+      <AllLists />
       <section className={css.container}>
         <header>
           <h1 className={css.title}>React Todo App</h1>

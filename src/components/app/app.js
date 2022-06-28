@@ -4,43 +4,14 @@ import { faList, faCheckDouble } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedinIn, faGithub, faCodepen } from '@fortawesome/free-brands-svg-icons'
 import { cx } from "classnames";
 import AllLists from '../allLists/allLists'
+import { Container } from '../container/container'
 
 console.log(css);
 export const App = () => {
   return (
     <div className={css.app}>
       <AllLists />
-      <section className={css.container}>
-        <header>
-          <h1 className={css.title}>React Todo App</h1>
-          <p className={css.headerP}>Add your first todo!</p>
-          <div className={css.loader}>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <FontAwesomeIcon icon={faCheckDouble} className={css.icon} />
-        </header>
-        <div className={css.todoArea}>
-          <div className={css.inputField}>
-            <form className={css.mainForm} autoComplete="off">
-              <textarea className={css.mainInput} placeholder="Meeting with mentor"></textarea>
-              <div className={css.extraField}>
-                <button className={css.dateField}>Today</button>
-                <div className={css.todoTags}>
-                  <button className={css.listTag} aria-label="Add list tag">
-                    Tag
-                  </button>
-                  <button className={css.priority} aria-label="Set priority">
-                    Pri
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
+      <Container />
       <section className={css.todoListArea}>
         <div className={css.todoList}>
           <h2 className={css.todoListTitle}>Meetings</h2>

@@ -20,8 +20,3 @@ const AllLists = () => {
 
 export default AllLists;
 
-/* <input type="checkbox" id="open" className={css.sideBarInput} />
-      <label htmlFor="open">
-        <FontAwesomeIcon icon={faList} />
-        <h3 className={css.todoListsTitle}>My Lists</h3>
-      </label> */

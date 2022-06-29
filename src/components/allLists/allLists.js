@@ -19,4 +19,3 @@ const AllLists = () => {
 };
 
 export default AllLists;
-

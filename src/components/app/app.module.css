@@ -154,6 +154,74 @@ header {
   margin-bottom: 0;
 }
 
+.dateField {
+  position: relative;
+  border: 1px solid var(--lavender);
+  border-radius: 0.2em;
+  padding: 3px 5px;
+  margin: 0 0 2px 2px;
+}
+.dateField:hover {
+  opacity: 0.7;
+}
+
+.timeForm {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.timeForm input {
+  width: 85px;
+  color: var(--magenta);
+  border-radius: 0.2em;
+  border: 2px solid transparent;
+  outline: none;
+  transition: all 0.2s;
+  box-shadow: 0 0 1px var(--lavender);
+}
+
+.timeForm input:hover {
+  cursor: pointer;
+  background-color: var(--gray);
+}
+
+.imeForm input:focus {
+  cursor: text;
+  background-color: white;
+  border-color: var(--purple);
+}
+
+.popper {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  bottom: -40px;
+  left: -10px;
+  padding: 5px;
+  border-radius: 0.2em;
+  background-color: var(--lavender);
+}
+.popper button {
+  border: 1px solid var(--purple);
+  border-radius: 0.2em;
+  background-color: var(--purple);
+  color: white;
+  padding: 2px 6px;
+  font-weight: 700;
+  font-size: 18px;
+}
+.popper button:hover {
+  opacity: 0.7;
+}
+.popperOpen {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
 .todoTags {
   display: flex;
   flex-flow: row nowrap;

@@ -413,7 +413,7 @@ footer h3 {
 
   .todoListArea {
     grid-area: todo;
-    grid-column: span 2;
+    grid-column: span 5;
   }
 
   footer {

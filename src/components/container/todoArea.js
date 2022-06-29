@@ -3,15 +3,15 @@ import { useState } from "react";
 
 export const TodoArea = () => {
     const [todoData, setTodoData] = useState({
-        title: ""
+        id: "",
+        title: "",
+        completed: false
     })
 
     function handleChange(event) {
-        setTodoData(prevTodoData => {
-            return {
-                ...prevTodoData,
-                [event.target.name]: event.target.value
-            }
+        setTodoData({
+            ...todoData,
+            [event.target.name]: event.target.value
         })
     }
 

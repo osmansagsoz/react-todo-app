@@ -18,8 +18,8 @@ const TodoList = () => {
                   </form>
                 </label>
                 <div className={css.extraWrapper}>
-                <span className={css.priSpan}><FontAwesomeIcon icon={faFire} /></span>
-                <span className={css.timeSpan}>17:00</span>
+                <button className={css.priSpan}><FontAwesomeIcon icon={faFire} /></button>
+                <button className={css.timeSpan}>17:00</button>
                 </div>
               </li>
               <li className="">
@@ -32,8 +32,8 @@ const TodoList = () => {
                   </form>
                 </label>
                 <div className={css.extraWrapper}>
-                <span className={css.priSpan}><FontAwesomeIcon icon={faFire} /></span>
-                <span className={css.timeSpan}>18:00</span>
+                <button className={css.priSpan}><FontAwesomeIcon icon={faFire} /></button>
+                <button className={css.timeSpan}>18:00</button>
                 </div>
               </li>
             </ul>

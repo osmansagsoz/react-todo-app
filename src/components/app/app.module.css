@@ -216,11 +216,6 @@ header {
 .popper button:hover {
   opacity: 0.7;
 }
-.popperOpen {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: all;
-}
 
 .todoTags {
   display: flex;
@@ -242,6 +237,9 @@ header {
 }
 
 .priPopper {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   position: absolute;
   width: 150px;
   bottom: -95px;
@@ -287,10 +285,12 @@ header {
 }
 
 .tagPopper {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   position: absolute;
   bottom: -30px;
   left: -90px;
-  
 }
 .tagPopper input {
   color: var(--magenta);
@@ -311,6 +311,12 @@ header {
   cursor: text;
   background-color: white;
   border-color: var(--purple);
+}
+
+.popperOpen {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
 }
 
 /* Lists styles */

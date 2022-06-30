@@ -1,9 +1,8 @@
 import css from "../app/app.module.css";
 import useTodoData from "../../hooks/useTodoData";
 import ExtraField from "./extraField";
-import { useState } from "react";
 
-export const TodoArea = (props) => {
+export const TodoArea = () => {
   const [todoData, handleChange] = useTodoData();
   console.log(todoData)
   
@@ -19,7 +18,7 @@ export const TodoArea = (props) => {
             value={todoData.title}
             onChange={handleChange}
           />
-          <ExtraField toggle={props.showTimeField} close={props.closed}/>
+          <ExtraField />
         </form>
       </div>
     </div>

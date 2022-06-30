@@ -7,27 +7,23 @@ import {
   faFireFlameSimple,
   faTag
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
-// import { useDropdown } from "../allLists/useDropdown";
+import { useDropdown } from "../allLists/useDropdown";
 import useTodoData from "../../hooks/useTodoData";
 
-const ExtraField = (props) => {
-  //   const [closed, showTimeField] = useDropdown({ initialClosed: true });
-  //   const [closed, setClosed] = useState(true)
-  const [todoData, handleChange] = useTodoData();
-  //   console.log(closed)
+const ExtraField = () => {
+  const [closed, showTimeField] = useDropdown({ initialClosed: true });
+  const [priClosed, showPriField] = useDropdown({ initialClosed: true });
+  const [tagClosed, showTagField] = useDropdown({ initialClosed: true });
 
-  //   function showTimeField() {
-  //     setClosed(prev => !prev)
-  //   }
+  const [todoData, handleChange] = useTodoData();
 
   return (
     <div className={css.extraField}>
       <div className={css.dateWrapper}>
-        <button className={css.dateField} onClick={props.toggle}>
+        <button type="button" className={css.dateField} onClick={showTimeField}>
           Add time
         </button>
-        <div className={cx(css.popper, !props.close && css.popperOpen)}>
+        <div className={cx(css.popper, !closed && css.popperOpen)}>
           <div className={css.timeForm}>
             <input
               type="text"
@@ -42,10 +38,10 @@ const ExtraField = (props) => {
       </div>
       <div className={css.todoTags}>
         <div className={css.priWrapper}>
-          <button className={css.priority} aria-label="Set priority">
+          <button type="button" className={css.priority} onClick={showPriField} aria-label="Set priority">
             <FontAwesomeIcon icon={faFireFlameCurved} />
           </button>
-          <div className={css.priPopper}>
+          <div className={cx(css.priPopper, !priClosed && css.popperOpen)}>
             <ul>
               <li>
                 <label htmlFor="pri1">
@@ -71,10 +67,10 @@ const ExtraField = (props) => {
           </div>
         </div>
         <div className={css.tagWrapper}>
-          <button className={css.listTag} aria-label="Add list tag">
+          <button type="button" className={css.listTag} onClick={showTagField} aria-label="Add list tag">
             <FontAwesomeIcon icon={faTag} />
           </button>
-          <div className={css.tagPopper}>
+          <div className={cx(css.tagPopper, !tagClosed && css.popperOpen)}>
             <input type="text" placeholder="Type a list tag" />
           </div>
         </div>

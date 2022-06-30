@@ -13,6 +13,7 @@ const useTodoData = () => {
       });
       
       function handleChange(event) {
+        event.preventdefault();
         setTodoData({
           ...todoData,
           [event.target.name]: event.target.value

@@ -1,4 +1,6 @@
 import css from "../app/app.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFire } from "@fortawesome/free-solid-svg-icons";
 
 const TodoList = () => {
     return (
@@ -15,6 +17,10 @@ const TodoList = () => {
                     <input type="text" className={css.editInput} />
                   </form>
                 </label>
+                <div className={css.extraWrapper}>
+                <span className={css.priSpan}><FontAwesomeIcon icon={faFire} /></span>
+                <span className={css.timeSpan}>17:00</span>
+                </div>
               </li>
               <li className="">
                 <input type="checkbox" />
@@ -25,6 +31,10 @@ const TodoList = () => {
                     <input type="text" className={css.editInput} />
                   </form>
                 </label>
+                <div className={css.extraWrapper}>
+                <span className={css.priSpan}><FontAwesomeIcon icon={faFire} /></span>
+                <span className={css.timeSpan}>18:00</span>
+                </div>
               </li>
             </ul>
           </div>

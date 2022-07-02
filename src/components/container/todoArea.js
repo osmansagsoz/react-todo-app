@@ -1,21 +1,25 @@
 import css from "../app/app.module.css";
 import useTodoData from "../../hooks/useTodoData";
 import ExtraField from "./extraField";
+import { useDropdown } from "../allLists/useDropdown";
 
-export const TodoArea = ({addTodo}) => {
+export const TodoArea = ({ addTodo }) => {
   const [todoData, handleChange, setTodoData] = useTodoData();
+  const [closed, showTimeField] = useDropdown({ initialClosed: true });
+  const [priClosed, showPriField] = useDropdown({ initialClosed: true });
+  const [tagClosed, showTagField] = useDropdown({ initialClosed: true });
 
-  console.log(todoData)
-  
+  console.log(todoData);
+
   function handleSubmit(e) {
     e.preventDefault();
-    if(todoData.title.trim()) {
-        addTodo({...todoData, id: `${Date.now()}`});
-        setTodoData({...todoData, title: ""})
+    if (todoData.title.trim()) {
+      addTodo({ ...todoData, id: `${Date.now()}` });
+      setTodoData({ ...todoData, title: "", completed: false, time: "", priority: "", tag: "" });
+      showTimeField();
+      showPriField();
+      showTagField();
     }
-  }
-  function handleTextSubmit(e) {
-
   }
 
   return (
@@ -29,7 +33,16 @@ export const TodoArea = ({addTodo}) => {
             value={todoData.title}
             onChange={handleChange}
           />
-          <ExtraField />
+          <ExtraField
+            todoData={todoData}
+            handleChange={handleChange}
+            closed={closed}
+            showTimeField={showTimeField}
+            priClosed={priClosed}
+            showPriField={showPriField}
+            tagClosed={tagClosed}
+            showTagField={showTagField}
+          />
         </form>
       </div>
     </div>

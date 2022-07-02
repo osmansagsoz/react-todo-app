@@ -8,22 +8,20 @@ import {
   faTag
 } from "@fortawesome/free-solid-svg-icons";
 import { useDropdown } from "../allLists/useDropdown";
-import useTodoData from "../../hooks/useTodoData";
-import { useRef } from "react";
 
-const ExtraField = () => {
-  const [closed, showTimeField] = useDropdown({ initialClosed: true });
-  const [priClosed, showPriField] = useDropdown({ initialClosed: true });
-  const [tagClosed, showTagField] = useDropdown({ initialClosed: true });
-  const [todoData, handleChange] = useTodoData();
-    const timeRef = useRef(null)
-
-//   function handleExtraInputSubmit(event) {
-//     if(event.keyCode === 13 && event.shiftKey === false) {
-//         event.preventDefault();
-//         timeRef.requestSubmit();
-//     }
-//   }
+const ExtraField = ({
+  todoData,
+  handleChange,
+  closed,
+  showTimeField,
+  priClosed,
+  showPriField,
+  tagClosed,
+  showTagField
+}) => {
+  //   const [closed, showTimeField] = useDropdown({ initialClosed: true });
+  //   const [priClosed, showPriField] = useDropdown({ initialClosed: true });
+  //   const [tagClosed, showTagField] = useDropdown({ initialClosed: true });
 
   return (
     <div className={css.extraField}>
@@ -39,9 +37,10 @@ const ExtraField = () => {
               placeholder="eg, 16:00"
               value={todoData.time}
               onChange={handleChange}
-              ref={timeRef}
             />
-            <button type="button" aria-label="Add selected time">+</button>
+            <button type="button" aria-label="Add selected time">
+              +
+            </button>
           </div>
         </div>
       </div>
@@ -59,22 +58,43 @@ const ExtraField = () => {
             <ul>
               <li>
                 <label htmlFor="pri1">
-                  <input type="radio" id="pri1" />
-                  Priority 1{" "}
-                  <FontAwesomeIcon icon={faFire} style={{ color: "#ffccd1" }} />
+                  <input
+                    type="radio"
+                    id="pri1"
+                    name="priority"
+                    value="Priority 1"
+                    checked={todoData.priority === "Priority 1"}
+                    onChange={handleChange}
+                  />
+                  Priority 1 <FontAwesomeIcon icon={faFire} style={{ color: "#ffccd1" }} />
                 </label>
               </li>
               <li>
                 <label htmlFor="pri2">
-                  <input type="radio" id="pri2" />
+                  <input
+                    type="radio"
+                    id="pri2"
+                    name="priority"
+                    value="Priority 2"
+                    checked={todoData.priority === "Priority 2"}
+                    onChange={handleChange}
+                  />
                   Priority 2{" "}
                   <FontAwesomeIcon icon={faFireFlameCurved} style={{ color: "#ffc39e" }} />
                 </label>
               </li>
               <li>
                 <label htmlFor="pri3">
-                  <input type="radio" id="pri3" />
-                  Priority 3 <FontAwesomeIcon icon={faFireFlameSimple} style={{ color: "#d6f1fe" }} />
+                  <input
+                    type="radio"
+                    id="pri3"
+                    name="priority"
+                    value="Priority 3"
+                    checked={todoData.priority === "Priority 3"}
+                    onChange={handleChange}
+                  />
+                  Priority 3{" "}
+                  <FontAwesomeIcon icon={faFireFlameSimple} style={{ color: "#d6f1fe" }} />
                 </label>
               </li>
             </ul>
@@ -90,13 +110,13 @@ const ExtraField = () => {
             <FontAwesomeIcon icon={faTag} />
           </button>
           <div className={cx(css.tagPopper, !tagClosed && css.popperOpen)}>
-            <input 
-                type="text" 
-                placeholder="Type a list tag"
-                name="tag"
-                value={todoData.tag}
-                onChange={handleChange}
-                />
+            <input
+              type="text"
+              placeholder="Type a list tag"
+              name="tag"
+              value={todoData.tag}
+              onChange={handleChange}
+            />
           </div>
         </div>
         <button className={css.submitButton}>Add Todo</button>

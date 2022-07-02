@@ -3,17 +3,11 @@ import { Header } from "./header";
 import { TodoArea } from "./todoArea";
 import { useState } from "react";
 
-export const Container = () => {
-//   const [closed, setClosed] = useState(true);
-//   function showTimeField() {
-//     setClosed((prev) => !prev);
-//   }
-//   console.log(closed);
-
+export const Container = (props) => {
   return (
     <section className={css.container}>
       <Header />
-      <TodoArea />
+      <TodoArea addTodo={props.addTodo}/>
     </section>
   );
 };

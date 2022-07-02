@@ -131,6 +131,7 @@ header {
   box-shadow: 0 0 1px var(--lavender);
   padding: 0;
   text-indent: 5px;
+  text-align: start;
 }
 
 .mainInput:hover {
@@ -163,6 +164,7 @@ header {
 }
 .dateField:hover {
   opacity: 0.7;
+  background-color: var(--gray);
 }
 
 .timeForm {
@@ -311,6 +313,16 @@ header {
   cursor: text;
   background-color: white;
   border-color: var(--purple);
+}
+.submitButton {
+    border: 1px solid var(--lavender);
+  border-radius: 0.2em;
+  padding: 3px 5px;
+  margin: 0 2px 2px 2px;
+}
+.submitButton:hover {
+    opacity: 0.7;
+    background-color: var(--gray);
 }
 
 .popperOpen {

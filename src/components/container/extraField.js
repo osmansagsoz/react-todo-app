@@ -9,13 +9,21 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useDropdown } from "../allLists/useDropdown";
 import useTodoData from "../../hooks/useTodoData";
+import { useRef } from "react";
 
 const ExtraField = () => {
   const [closed, showTimeField] = useDropdown({ initialClosed: true });
   const [priClosed, showPriField] = useDropdown({ initialClosed: true });
   const [tagClosed, showTagField] = useDropdown({ initialClosed: true });
-
   const [todoData, handleChange] = useTodoData();
+    const timeRef = useRef(null)
+
+//   function handleExtraInputSubmit(event) {
+//     if(event.keyCode === 13 && event.shiftKey === false) {
+//         event.preventDefault();
+//         timeRef.requestSubmit();
+//     }
+//   }
 
   return (
     <div className={css.extraField}>
@@ -31,8 +39,9 @@ const ExtraField = () => {
               placeholder="eg, 16:00"
               value={todoData.time}
               onChange={handleChange}
+              ref={timeRef}
             />
-            <button aria-label="Add selected time">+</button>
+            <button type="button" aria-label="Add selected time">+</button>
           </div>
         </div>
       </div>
@@ -81,9 +90,16 @@ const ExtraField = () => {
             <FontAwesomeIcon icon={faTag} />
           </button>
           <div className={cx(css.tagPopper, !tagClosed && css.popperOpen)}>
-            <input type="text" placeholder="Type a list tag" />
+            <input 
+                type="text" 
+                placeholder="Type a list tag"
+                name="tag"
+                value={todoData.tag}
+                onChange={handleChange}
+                />
           </div>
         </div>
+        <button className={css.submitButton}>Add Todo</button>
       </div>
     </div>
   );

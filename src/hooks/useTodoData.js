@@ -13,13 +13,14 @@ const useTodoData = () => {
       });
       
       function handleChange(event) {
-        event.preventdefault();
+        const {name, value, type, checked} = event.target
+
         setTodoData({
           ...todoData,
-          [event.target.name]: event.target.value
+          [name]: type === "checkbox" ? checked : value
         });
     }
-    return [todoData, handleChange];
+    return [todoData, handleChange, setTodoData];
 }
 
 export default useTodoData;

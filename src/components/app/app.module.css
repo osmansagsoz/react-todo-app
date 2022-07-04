@@ -8,6 +8,9 @@
   --gray: #f1f2f7;
   --magenta: #0b113c;
   --babyblue: #d6f1fe;
+  --darkrose: #f34e5f;
+  --darkpeach: #f78f4e;
+  --darkblue: #9fdbf8;
   --myFont: "Inconsolata", monospace;
 }
 
@@ -539,7 +542,12 @@ header {
 }
 .priSpan {
   text-align: center;
-  padding-bottom: 0.2rem;
+  padding: 0.2rem 0;
+  background-color: white;
+  border-radius: 0.2em;
+  box-shadow: inset 0 0 0px 1.5px var(--gray);
+  margin-right: 2px;
+  border-color: var(--gray);
 }
 .timeSpan {
   font-size: 15px;

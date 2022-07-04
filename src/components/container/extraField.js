@@ -66,7 +66,7 @@ const ExtraField = ({
                     checked={todoData.priority === "Priority 1"}
                     onChange={handleChange}
                   />
-                  Priority 1 <FontAwesomeIcon icon={faFire} style={{ color: "#ffccd1" }} />
+                  Priority 1 <FontAwesomeIcon icon={faFire} style={{ color: "var(--darkrose)" }} />
                 </label>
               </li>
               <li>
@@ -80,7 +80,7 @@ const ExtraField = ({
                     onChange={handleChange}
                   />
                   Priority 2{" "}
-                  <FontAwesomeIcon icon={faFireFlameCurved} style={{ color: "#ffc39e" }} />
+                  <FontAwesomeIcon icon={faFireFlameCurved} style={{ color: "var(--darkpeach)" }} />
                 </label>
               </li>
               <li>
@@ -94,7 +94,7 @@ const ExtraField = ({
                     onChange={handleChange}
                   />
                   Priority 3{" "}
-                  <FontAwesomeIcon icon={faFireFlameSimple} style={{ color: "#d6f1fe" }} />
+                  <FontAwesomeIcon icon={faFireFlameSimple} style={{ color: "var(--darkblue)" }} />
                 </label>
               </li>
             </ul>

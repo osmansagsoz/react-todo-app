@@ -5,9 +5,9 @@ import { useDropdown } from "../allLists/useDropdown";
 
 export const TodoArea = ({ addTodo }) => {
   const [todoData, handleChange, setTodoData] = useTodoData();
-  const [closed, showTimeField] = useDropdown({ initialClosed: true });
-  const [priClosed, showPriField] = useDropdown({ initialClosed: true });
-  const [tagClosed, showTagField] = useDropdown({ initialClosed: true });
+  const [closed, showTimeField, setClosed] = useDropdown({ initialClosed: true });
+  const [priClosed, showPriField, setPriClosed] = useDropdown({ initialClosed: true });
+  const [tagClosed, showTagField, setTagClosed] = useDropdown({ initialClosed: true });
 
   console.log(todoData);
 
@@ -16,9 +16,9 @@ export const TodoArea = ({ addTodo }) => {
     if (todoData.title.trim()) {
       addTodo({ ...todoData, id: `${Date.now()}` });
       setTodoData({ ...todoData, title: "", completed: false, time: "", priority: "", tag: "" });
-      showTimeField();
-      showPriField();
-      showTagField();
+      setClosed(true);
+      setPriClosed(true);
+      setTagClosed(true);
     }
   }
 

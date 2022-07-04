@@ -7,5 +7,5 @@ export const useDropdown = ({ initialClosed }) => {
     setClosed((prevClosed) => !prevClosed);
   }, []);
 
-  return [closed, toggleLists];
+  return [closed, toggleLists, setClosed];
 };

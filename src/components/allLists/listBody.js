@@ -2,9 +2,8 @@ import { useState, useRef, useEffect } from 'react'
 import css from '../app/app.module.css'
 import ListItem from './listItem';
 
-export const ListBody = (props) => {
+export const ListBody = ({className, listData, listChange, setListData}) => {
   const [lists, setLists] = useState([]);
-  const [listData, setListData] = useState({ listTitle: "", listId: "" });
   // const itemsRef = useRef([]);
   // console.log(itemsRef.current)
 
@@ -13,13 +12,6 @@ export const ListBody = (props) => {
   // }, [lists.length])
   // ref={el => itemsRef.current[i] = el}
 
-  function listChange(e) {
-    const {name, value} = e.target;
-    setListData({
-      ...listData,
-      [name]: value
-    })
-  }
   function addList(list) {
     setLists([list, ...lists]);
   }
@@ -32,7 +24,7 @@ export const ListBody = (props) => {
   console.log(lists);
 
     return (
-        <div className={props.className}>
+        <div className={className}>
         <ul className={css.todoLists}>
           {lists.map((list, i) => {
             return <ListItem key={list.listId} listData={list} />

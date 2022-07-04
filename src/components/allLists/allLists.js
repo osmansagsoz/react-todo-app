@@ -4,7 +4,7 @@ import { faList } from "@fortawesome/free-solid-svg-icons";
 import { ListBody } from "./listBody";
 import { useDropdown } from "./useDropdown";
 
-const AllLists = () => {
+const AllLists = (props) => {
     const [closed, toggleLists] = useDropdown({initialClosed: true})
 
   return (
@@ -13,7 +13,12 @@ const AllLists = () => {
         <FontAwesomeIcon icon={faList} />
         <h3 className={css.todoListsTitle}>My Lists</h3>
       </button>
-      <ListBody className={closed ? css.dropdown : css.dropdownOpen} />
+      <ListBody 
+      className={closed ? css.dropdown : css.dropdownOpen}
+      listData={props.listData} 
+      listChange={props.listChange} 
+      setListData={props.setListData}
+      />
     </section>
   );
 };

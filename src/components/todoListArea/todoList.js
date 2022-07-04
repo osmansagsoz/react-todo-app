@@ -2,11 +2,8 @@ import css from "../app/app.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFire } from "@fortawesome/free-solid-svg-icons";
 import Todo from "./todo";
-// import useTodoData from "../../hooks/useTodoData";
-import { useState } from "react";
 
 const TodoList = (props) => {
-    // const [todoData, handleChange] = useTodoData()
     console.log(props.todos)
 
     return (

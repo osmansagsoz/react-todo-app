@@ -12,9 +12,9 @@ const Todo = ({ todo }) => {
     if (todo.priority === "Priority 1") {
       setPriColor("var(--darkrose)");
     } else if (todo.priority === "Priority 2") {
-      setPriColor("#f78f4e");
+      setPriColor("var(--darkpeach)");
     } else {
-      setPriColor("#9fdbf8");
+      setPriColor("var(--darkblue)");
     }
   }, [todo.priority]);
 

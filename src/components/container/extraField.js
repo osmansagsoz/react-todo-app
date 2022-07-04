@@ -12,6 +12,7 @@ import { useDropdown } from "../allLists/useDropdown";
 const ExtraField = ({
   todoData,
   handleChange,
+  setTodoData,
   closed,
   showTimeField,
   priClosed,
@@ -22,6 +23,15 @@ const ExtraField = ({
   //   const [closed, showTimeField] = useDropdown({ initialClosed: true });
   //   const [priClosed, showPriField] = useDropdown({ initialClosed: true });
   //   const [tagClosed, showTagField] = useDropdown({ initialClosed: true });
+    function handleTimeChange(event) {
+        const re = /^[0-9:\b]+$/;
+        if (event.target.value === '' || re.test(event.target.value)) {
+            setTodoData({
+                ...todoData,
+          [event.target.name] : event.target.value
+            })
+        }
+    }
 
   return (
     <div className={css.extraField}>
@@ -36,7 +46,7 @@ const ExtraField = ({
               name="time"
               placeholder="eg, 16:00"
               value={todoData.time}
-              onChange={handleChange}
+              onChange={handleTimeChange}
             />
             <button type="button" aria-label="Add selected time">
               +

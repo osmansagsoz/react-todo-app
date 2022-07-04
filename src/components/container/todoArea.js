@@ -36,6 +36,7 @@ export const TodoArea = ({ addTodo }) => {
           <ExtraField
             todoData={todoData}
             handleChange={handleChange}
+            setTodoData={setTodoData}
             closed={closed}
             showTimeField={showTimeField}
             priClosed={priClosed}

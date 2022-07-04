@@ -35,7 +35,7 @@ const Todo = ({ todo }) => {
       </label>
       <div className={css.extraWrapper}>
         <button className={css.priSpan}>
-          <FontAwesomeIcon
+          {todo.priority && <FontAwesomeIcon
             icon={
               todo.priority === "Priority 1"
                 ? faFire
@@ -45,7 +45,7 @@ const Todo = ({ todo }) => {
             }
             style={{ color: priColor }}
             className={css.priIcon}
-          />
+          />}
         </button>
         <button className={css.timeSpan}>{todo.time}</button>
       </div>

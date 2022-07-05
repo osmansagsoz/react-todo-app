@@ -7,7 +7,12 @@ export const Container = (props) => {
   return (
     <section className={css.container}>
       <Header />
-      <TodoArea addTodo={props.addTodo}/>
+      <TodoArea
+        addTodo={props.addTodo}
+        todoData={props.todoData}
+        handleChange={props.handleChange}
+        setTodoData={props.setTodoData}
+      />
     </section>
   );
 };

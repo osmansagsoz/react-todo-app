@@ -1,10 +1,8 @@
 import css from "../app/app.module.css";
-import useTodoData from "../../hooks/useTodoData";
 import ExtraField from "./extraField";
 import { useDropdown } from "../allLists/useDropdown";
 
-export const TodoArea = ({ addTodo }) => {
-  const [todoData, handleChange, setTodoData] = useTodoData();
+export const TodoArea = ({ addTodo, todoData, handleChange, setTodoData }) => {
   const [closed, showTimeField, setClosed] = useDropdown({ initialClosed: true });
   const [priClosed, showPriField, setPriClosed] = useDropdown({ initialClosed: true });
   const [tagClosed, showTagField, setTagClosed] = useDropdown({ initialClosed: true });

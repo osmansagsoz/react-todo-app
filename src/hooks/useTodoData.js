@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useCallback, useState} from 'react';
 
 
 const useTodoData = () => {
@@ -12,14 +12,14 @@ const useTodoData = () => {
         tag: ""
       });
       
-      function handleChange(event) {
+      const handleChange = useCallback((event) => {
         const {name, value, type, checked} = event.target
 
         setTodoData({
           ...todoData,
           [name]: type === "checkbox" ? checked : value
         });
-    }
+    }, [todoData])
     return [todoData, handleChange, setTodoData];
 }
 

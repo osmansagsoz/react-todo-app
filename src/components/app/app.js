@@ -3,44 +3,101 @@ import AllLists from "../allLists/allLists";
 import { Container } from "../container/container";
 import Footer from "../footer/footer";
 import TodoListArea from "../todoListArea/todoListArea";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import TodoList from "../todoListArea/todoList";
 import useListData from "../../hooks/useListData";
 import useTodoData from "../../hooks/useTodoData";
+import { createTag, getAllTags } from "../../services/tags";
 
-console.log(css);
+// console.log(css);
 export const App = () => {
-  const [listData, listChange, setListData] = useListData();
-  const [todoData, handleChange, setTodoData] = useTodoData();
-  const [todos, setTodos] = useState(listData.todos);
+  const [tags, setTags] = useState();
+  const [tagsError, setTagsError] = useState(false);
 
-  const addTodo = (todo) => {
-    if(!todoData.tag) {
+  const [selectedTag, setSelectedTag] = useState();
 
-    }
-    if (listData.listTitle === todoData.tag) {
-      setTodos([todo, ...todos]);
-      console.log(todos)
-    } else {
+  const onTagCreated = useCallback(async ({ name }) => {
+    // Handle errors with try & catch here!
+    const data = await createTag({ name });
+    setTags((prevTags) => [...prevTags, data]);
+  }, []);
 
-    }
-  };
-  const renderList = () => {
-    return <TodoList />;
-  };
+  const onSelectedTagChange = useCallback(
+    (nextSelectedTag) => {
+      const tagIndex = tags.findIndex((tag) => tag.id === nextSelectedTag);
+      if (tagIndex > -1) {
+        setSelectedTag(nextSelectedTag);
+      }
+    },
+    [tags]
+  );
 
-  console.log(todos);
+  useEffect(() => {
+    getAllTags()
+      .then((data) => {
+        // Set local tags in state
+        setTags(data);
+
+        // If we have tags, set initial selected tag
+        if (data.length) {
+          setSelectedTag(data[0].id);
+        }
+      })
+      .catch((e) => {
+        // Update state if there's an error while loading tags
+        setTagsError(true);
+      });
+  }, []);
+
+  if (tagsError) {
+    // show error
+  } else if (tags === undefined) {
+    // loading
+  } else if (tags.length === 0) {
+    // empty
+  } else if (tags.length > 0) {
+    // have data
+  }
+
+  console.log(tags);
+
+  // const [listData, listChange, setListData] = useListData();
+  // const [todoData, handleChange, setTodoData] = useTodoData();
+  // const [todos, setTodos] = useState(listData.todos);
+
+  // const addTodo = (todo) => {
+  //   if(!todoData.tag) {
+
+  //   }
+  //   if (listData.listTitle === todoData.tag) {
+  //     setTodos([todo, ...todos]);
+  //     // console.log(todos)
+  //   } else {
+
+  //   }
+  // };
+
+  // const renderList = () => {
+  //   return <TodoList />;
+  // };
+
+  // console.log(todos);
 
   return (
     <div className={css.app}>
-      <AllLists listData={listData} listChange={listChange} setListData={setListData} />
-      <Container
+      <AllLists
+        onSelectedTagChange={onSelectedTagChange}
+        onTagCreated={onTagCreated}
+        selectedTag={selectedTag}
+        tags={tags}
+      />
+      {/* <Container
         addTodo={addTodo}
         todoData={todoData}
         handleChange={handleChange}
         setTodoData={setTodoData}
       />
-      <TodoListArea todos={todos} />
+      <TodoListArea todos={todos} /> */}
       <Footer />
     </div>
   );

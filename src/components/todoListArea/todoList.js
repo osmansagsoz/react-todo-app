@@ -4,7 +4,7 @@ import { faFire } from "@fortawesome/free-solid-svg-icons";
 import Todo from "./todo";
 
 const TodoList = (props) => {
-    console.log(props.todos)
+    // console.log(props.todos)
 
     return (
         <div className={css.todoList}>

@@ -1,50 +1,53 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useCallback } from "react";
 import css from "../app/app.module.css";
+import { Loader } from "../loader/loader";
 import ListItem from "./listItem";
 
-export const ListBody = ({ className, listData, listChange, setListData }) => {
-  const [lists, setLists] = useState([
-    { listTitle: "Meetings", listId: "1", todos: [] },
-    { listTitle: "Daily Routine", listId: "2", todos: [] },
-    { listTitle: "Misc.", listId: "3", todos: [] }
-  ]);
-  // const itemsRef = useRef([]);
-  // console.log(itemsRef.current)
+export const ListBody = ({ className, onSelectedTagChange, onTagCreated, selectedTag, tags }) => {
+  const [newTag, setNewTag] = useState("");
 
-  // useEffect(() => {
-  //   itemsRef.current = itemsRef.current.slice(0, lists.length);
-  // }, [lists.length])
-  // ref={el => itemsRef.current[i] = el}
+  const onNewTagChange = useCallback((event) => setNewTag(event.target.value), []);
 
-  function addList(list) {
-    setLists([list, ...lists]);
-  }
-  function handleListSubmit(e) {
-    e.preventDefault();
-    addList({ ...listData, listId: `${Date.now()}` });
-    setListData({ ...listData, listTitle: "", listId: "" });
-  }
-  console.log(listData.listTitle);
-  console.log(lists);
+  const handleListSubmit = useCallback(
+    async (event) => {
+      event.preventDefault();
+
+      const newTagName = newTag.trim(); // "  asdas  " => "asdas"
+      if (newTagName) {
+        onTagCreated({ name: newTagName });
+        setNewTag("");
+      }
+    },
+    [newTag, onTagCreated]
+  );
 
   return (
     <div className={className}>
-      <ul className={css.todoLists}>
-        {lists.map((list, i) => {
-          return <ListItem key={list.listId} listData={list} />;
-        })}
-      </ul>
+      {tags ? (
+        <ul className={css.todoLists}>
+          {tags.map((tag) => (
+            <ListItem
+              key={tag.id}
+              onSelectedTagChange={onSelectedTagChange}
+              selectedTag={selectedTag}
+              tag={tag}
+            />
+          ))}
+        </ul>
+      ) : (
+        <Loader />
+      )}
       <form onSubmit={handleListSubmit}>
         <input
           type="text"
           name="listTitle"
-          value={listData.listTitle}
-          onChange={listChange}
+          value={newTag}
+          onChange={onNewTagChange}
           className={css.newList}
           placeholder="New list name"
           aria-label="New list name"
         />
-        <button className={css.listButton} aria-label="Create new list">
+        <button className={css.listButton} aria-label="Create new list" type="submit">
           +
         </button>
       </form>

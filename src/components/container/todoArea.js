@@ -7,7 +7,7 @@ export const TodoArea = ({ addTodo, todoData, handleChange, setTodoData }) => {
   const [priClosed, showPriField, setPriClosed] = useDropdown({ initialClosed: true });
   const [tagClosed, showTagField, setTagClosed] = useDropdown({ initialClosed: true });
 
-  console.log(todoData);
+  // console.log(todoData);
 
   function handleSubmit(e) {
     e.preventDefault();

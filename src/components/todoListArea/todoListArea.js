@@ -1,11 +1,11 @@
 import css from "../app/app.module.css";
 import TodoList from "./todoList";
 
-const TodoListArea = (props) => {
+const TodoListArea = ({ todos }) => {
     
   return (
     <section className={css.todoListArea}>
-      <TodoList todos={props.todos} />
+      <TodoList todos={todos} />
     </section>
   );
 };

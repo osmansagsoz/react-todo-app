@@ -1,21 +1,14 @@
-import { useRef, useState } from "react";
+import { useCallback } from "react";
 import css from "../app/app.module.css";
 
-const ListItem = ({ listData }) => {
-  const [isCurrentListItem, setIsCurrentListItem] = useState(false);
-//   const [currentListItem, setCurrentListItem] = useState("");
-
-  function handleListClick(e) {
-    // setCurrentListItem(e.target)
-    console.log(e.target)
-    // currentListItem === this ? setIsCurrentListItem(true): setIsCurrentListItem(false)
-    // currentListItem === itemsRef.current ? setIsCurrentListItem(true) : setIsCurrentListItem(false)
-    setIsCurrentListItem(true);
-  }
+const ListItem = ({ onSelectedTagChange, selectedTag, tag }) => {
+  const handleListClick = useCallback(() => {
+    onSelectedTagChange(tag.id);
+  }, [onSelectedTagChange, tag.id]);
 
   return (
-    <li onClick={handleListClick} className={isCurrentListItem ? css.activeList : null}>
-      {listData.listTitle}
+    <li onClick={handleListClick} className={selectedTag === tag.id ? css.activeList : null}>
+      {tag.name}
     </li>
   );
 };

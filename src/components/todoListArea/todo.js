@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFire, faFireFlameCurved, faFireFlameSimple } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useMemo, useState } from "react";
 
-const Todo = ({ todo }) => {
+const Todo = ({ todo, todoData, handleChange }) => {
   const priColor = useMemo(() => {
     switch (todo.priority) {
       case "Priority 1":
@@ -18,32 +18,24 @@ const Todo = ({ todo }) => {
   }, [todo.priority]);
 
   const displayTime = useMemo(() => {
-    if (todo.time) {
+    if (!todo.time) {
+      return;
+    }
+    if (typeof todo.time === 'string') {
+      return todo.time;
+    } else {
       const date = new Date(todo.time);
       return `${date.getHours()}:${date.getMinutes()}`;
     }
   }, [todo.time]);
-
-  // const [todoData, handleChange] = useTodoData()
-  // const [priColor, setPriColor] = useState("");
-
-  // useEffect(() => {
-  //   if (todo.priority === "Priority 1") {
-  //     setPriColor("var(--darkrose)");
-  //   } else if (todo.priority === "Priority 2") {
-  //     setPriColor("var(--darkpeach)");
-  //   } else {
-  //     setPriColor("var(--darkblue)");
-  //   }
-  // }, [todo.priority]);
 
   return (
     <li>
       <input
         type="checkbox"
         name="completed"
-        // checked={todoData.completed}
-        // onChange={handleChange}
+        checked={todoData.completed}
+        onChange={handleChange}
       />
       <span className={css.customCheckbox}></span>
       <label>

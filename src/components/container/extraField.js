@@ -43,7 +43,7 @@ const ExtraField = ({
               type="text"
               name="time"
               placeholder="eg, 16:00"
-            //   value={todoData.time}
+              value={todoData.time}
               onChange={handleTimeChange}
             />
             <button type="button" aria-label="Add selected time">
@@ -71,7 +71,7 @@ const ExtraField = ({
                     id="pri1"
                     name="priority"
                     value="Priority 1"
-                    // checked={todoData.priority === "Priority 1"}
+                    checked={todoData.priority === "Priority 1"}
                     onChange={handleChange}
                   />
                   Priority 1 <FontAwesomeIcon icon={faFire} style={{ color: "var(--darkrose)" }} />
@@ -84,7 +84,7 @@ const ExtraField = ({
                     id="pri2"
                     name="priority"
                     value="Priority 2"
-                    // checked={todoData.priority === "Priority 2"}
+                    checked={todoData.priority === "Priority 2"}
                     onChange={handleChange}
                   />
                   Priority 2{" "}
@@ -98,7 +98,7 @@ const ExtraField = ({
                     id="pri3"
                     name="priority"
                     value="Priority 3"
-                    // checked={todoData.priority === "Priority 3"}
+                    checked={todoData.priority === "Priority 3"}
                     onChange={handleChange}
                   />
                   Priority 3{" "}
@@ -121,8 +121,8 @@ const ExtraField = ({
             <input
               type="text"
               placeholder="Type a list tag"
-              name="tag"
-            //   value={todoData.tag}
+              name="tagId"
+              value={todoData.tagId}
               onChange={handleChange}
             />
           </div>

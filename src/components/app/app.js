@@ -6,6 +6,7 @@ import TodoListArea from "../todoListArea/todoListArea";
 import { useCallback, useEffect, useState } from "react";
 import { createTag, getAllTags } from "../../services/tags";
 import { getTodos } from "../../services/todos";
+import useTodoData from "../../hooks/useTodoData";
 
 // console.log(css);
 export const App = () => {
@@ -15,6 +16,8 @@ export const App = () => {
   const [selectedTag, setSelectedTag] = useState();
 
   const [selectedTagTodos, setSelectedTagTodos] = useState();
+
+  const [todoData, handleChange, setTodoData] = useTodoData();
 
   const onTagCreated = useCallback(async ({ name }) => {
     // Handle errors with try & catch here!
@@ -74,7 +77,7 @@ export const App = () => {
   console.log("selectedTagTodos", selectedTagTodos);
 
   // const [listData, listChange, setListData] = useListData();
-  // const [todoData, handleChange, setTodoData] = useTodoData();
+
   // const [todos, setTodos] = useState(listData.todos);
 
   // const addTodo = (todo) => {
@@ -104,12 +107,11 @@ export const App = () => {
         tags={tags}
       />
       <Container
-        // addTodo={addTodo}
-        // todoData={todoData}
-        // handleChange={handleChange}
-        // setTodoData={setTodoData}
+        todoData={todoData}
+        handleChange={handleChange}
+        setTodoData={setTodoData}
       />
-      <TodoListArea todos={selectedTagTodos} />
+      <TodoListArea todos={selectedTagTodos} todoData={todoData} handleChange={handleChange} />
       <Footer />
     </div>
   );

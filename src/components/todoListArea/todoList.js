@@ -1,9 +1,7 @@
 import css from "./todoListArea.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFire } from "@fortawesome/free-solid-svg-icons";
 import Todo from "./todo";
 
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, todoData, handleChange }) => {
   return (
     <div className={css.todoList}>
       <h2 className={css.todoListTitle}>Meetings</h2>
@@ -11,24 +9,8 @@ const TodoList = ({ todos }) => {
         {todos ? (
           <ul className={css.todos}>
             {todos.map((todo) => {
-              return <Todo key={todo.id} todo={todo} />;
+              return <Todo key={todo.id} todo={todo} todoData={todoData} handleChange={handleChange} />;
             })}
-            {/* <li className="">
-              <input type="checkbox" />
-              <span className={css.customCheckbox}></span>
-              <label className="">
-                <span className={css.todoSpan}>Meeting with manager</span>
-                <form className={css.editForm}>
-                  <input type="text" className={css.editInput} />
-                </form>
-              </label>
-              <div className={css.extraWrapper}>
-                <button className={css.priSpan}>
-                  <FontAwesomeIcon icon={faFire} />
-                </button>
-                <button className={css.timeSpan}>18:00</button>
-              </div>
-            </li> */}
           </ul>
         ) : null}
       </div>

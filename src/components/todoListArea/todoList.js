@@ -1,4 +1,4 @@
-import css from "../app/app.module.css";
+import css from "./todoListArea.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFire } from "@fortawesome/free-solid-svg-icons";
 import Todo from "./todo";

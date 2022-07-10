@@ -4,9 +4,6 @@ import { Container } from "../container/container";
 import Footer from "../footer/footer";
 import TodoListArea from "../todoListArea/todoListArea";
 import { useCallback, useEffect, useState } from "react";
-import TodoList from "../todoListArea/todoList";
-import useListData from "../../hooks/useListData";
-import useTodoData from "../../hooks/useTodoData";
 import { createTag, getAllTags } from "../../services/tags";
 import { getTodos } from "../../services/todos";
 
@@ -106,12 +103,12 @@ export const App = () => {
         selectedTag={selectedTag}
         tags={tags}
       />
-      {/* <Container
-        addTodo={addTodo}
-        todoData={todoData}
-        handleChange={handleChange}
-        setTodoData={setTodoData}
-      /> */}
+      <Container
+        // addTodo={addTodo}
+        // todoData={todoData}
+        // handleChange={handleChange}
+        // setTodoData={setTodoData}
+      />
       <TodoListArea todos={selectedTagTodos} />
       <Footer />
     </div>

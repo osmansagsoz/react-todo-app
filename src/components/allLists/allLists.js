@@ -1,4 +1,4 @@
-import css from "../app/app.module.css";
+import css from "./allLists.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import { ListBody } from "./listBody";

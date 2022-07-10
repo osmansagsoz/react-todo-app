@@ -1,7 +1,7 @@
-import css from "../app/app.module.css";
+import css from "./container.module.css";
 import { Header } from "./header";
 import { TodoArea } from "./todoArea";
-import { useState } from "react";
+
 
 export const Container = (props) => {
   return (

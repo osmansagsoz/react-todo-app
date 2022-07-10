@@ -1,4 +1,4 @@
-import css from "../app/app.module.css";
+import css from "./container.module.css";
 import cx from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,7 +7,7 @@ import {
   faFireFlameSimple,
   faTag
 } from "@fortawesome/free-solid-svg-icons";
-import { useDropdown } from "../allLists/useDropdown";
+
 
 const ExtraField = ({
   todoData,
@@ -20,9 +20,7 @@ const ExtraField = ({
   tagClosed,
   showTagField
 }) => {
-  //   const [closed, showTimeField] = useDropdown({ initialClosed: true });
-  //   const [priClosed, showPriField] = useDropdown({ initialClosed: true });
-  //   const [tagClosed, showTagField] = useDropdown({ initialClosed: true });
+
     function handleTimeChange(event) {
         const re = /^[0-9:\b]+$/;
         if (event.target.value === '' || re.test(event.target.value)) {
@@ -45,7 +43,7 @@ const ExtraField = ({
               type="text"
               name="time"
               placeholder="eg, 16:00"
-              value={todoData.time}
+            //   value={todoData.time}
               onChange={handleTimeChange}
             />
             <button type="button" aria-label="Add selected time">
@@ -73,7 +71,7 @@ const ExtraField = ({
                     id="pri1"
                     name="priority"
                     value="Priority 1"
-                    checked={todoData.priority === "Priority 1"}
+                    // checked={todoData.priority === "Priority 1"}
                     onChange={handleChange}
                   />
                   Priority 1 <FontAwesomeIcon icon={faFire} style={{ color: "var(--darkrose)" }} />
@@ -86,7 +84,7 @@ const ExtraField = ({
                     id="pri2"
                     name="priority"
                     value="Priority 2"
-                    checked={todoData.priority === "Priority 2"}
+                    // checked={todoData.priority === "Priority 2"}
                     onChange={handleChange}
                   />
                   Priority 2{" "}
@@ -100,7 +98,7 @@ const ExtraField = ({
                     id="pri3"
                     name="priority"
                     value="Priority 3"
-                    checked={todoData.priority === "Priority 3"}
+                    // checked={todoData.priority === "Priority 3"}
                     onChange={handleChange}
                   />
                   Priority 3{" "}
@@ -124,7 +122,7 @@ const ExtraField = ({
               type="text"
               placeholder="Type a list tag"
               name="tag"
-              value={todoData.tag}
+            //   value={todoData.tag}
               onChange={handleChange}
             />
           </div>

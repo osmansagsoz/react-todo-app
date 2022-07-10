@@ -1,4 +1,4 @@
-import css from "../app/app.module.css";
+import css from "./footer.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedinIn, faGithub, faCodepen } from "@fortawesome/free-brands-svg-icons";
 

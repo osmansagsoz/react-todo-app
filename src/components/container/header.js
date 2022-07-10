@@ -1,5 +1,5 @@
 import { Loader } from "../loader/loader";
-import css from "../app/app.module.css";
+import css from "./container.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckDouble } from "@fortawesome/free-solid-svg-icons";
 

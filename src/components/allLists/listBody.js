@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import css from "../app/app.module.css";
+import css from "./allLists.module.css";
 import { Loader } from "../loader/loader";
 import ListItem from "./listItem";
 

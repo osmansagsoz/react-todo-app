@@ -1,4 +1,4 @@
-import css from "../app/app.module.css";
+import css from "./todoListArea.module.css";
 import TodoList from "./todoList";
 
 const TodoListArea = ({ todos }) => {

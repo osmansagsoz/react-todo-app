@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import css from "../app/app.module.css";
+import css from "./allLists.module.css";
 
 const ListItem = ({ onSelectedTagChange, selectedTag, tag }) => {
   const handleListClick = useCallback(() => {

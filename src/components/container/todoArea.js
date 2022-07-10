@@ -1,4 +1,4 @@
-import css from "../app/app.module.css";
+import css from "./container.module.css";
 import ExtraField from "./extraField";
 import { useDropdown } from "../allLists/useDropdown";
 
@@ -28,8 +28,8 @@ export const TodoArea = ({ addTodo, todoData, handleChange, setTodoData }) => {
             className={css.mainInput}
             placeholder="Meeting with mentor"
             name="title"
-            value={todoData.title}
-            onChange={handleChange}
+            // value={todoData.title}
+            // onChange={handleChange}
           />
           <ExtraField
             todoData={todoData}

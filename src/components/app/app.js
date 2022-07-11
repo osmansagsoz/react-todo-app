@@ -13,7 +13,7 @@ export const App = () => {
   const [tags, setTags] = useState();
   const [tagsError, setTagsError] = useState(false);
 
-  const [selectedTag, setSelectedTag] = useState();
+  const [selectedTag, setSelectedTag] = useState({});
 
   const [selectedTagTodos, setSelectedTagTodos] = useState();
 
@@ -27,7 +27,7 @@ export const App = () => {
 
   const onSelectedTagChange = useCallback(
     (nextSelectedTag) => {
-      const tagIndex = tags.findIndex((tag) => tag.id === nextSelectedTag);
+      const tagIndex = tags.findIndex((tag) => tag.id === nextSelectedTag.id);
       if (tagIndex > -1) {
         setSelectedTag(nextSelectedTag);
       }
@@ -43,7 +43,7 @@ export const App = () => {
 
         // If we have tags, set initial selected tag
         if (data.length) {
-          setSelectedTag(data[0].id);
+          setSelectedTag(data[0]);
         }
       })
       .catch((e) => {
@@ -54,7 +54,7 @@ export const App = () => {
 
   useEffect(() => {
     if (selectedTag !== undefined) {
-      getTodos(selectedTag).then((data) => {
+      getTodos(selectedTag.id).then((data) => {
         setSelectedTagTodos(data);
       });
     }
@@ -113,7 +113,7 @@ export const App = () => {
         tags={tags}
         onTagCreated={onTagCreated}
       />
-      <TodoListArea todos={selectedTagTodos} todoData={todoData} handleChange={handleChange} />
+      <TodoListArea todos={selectedTagTodos} todoData={todoData} handleChange={handleChange} selectedTag={selectedTag} />
       <Footer />
     </div>
   );

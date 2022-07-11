@@ -4,21 +4,50 @@ import { useDropdown } from "../allLists/useDropdown";
 import { createTodo } from "../../services/todos";
 import { useCallback } from "react";
 
-export const TodoArea = ({ todoData, handleChange, setTodoData }) => {
+export const TodoArea = ({ todoData, handleChange, setTodoData, tags, onTagCreated }) => {
   const [closed, showTimeField, setClosed] = useDropdown({ initialClosed: true });
   const [priClosed, showPriField, setPriClosed] = useDropdown({ initialClosed: true });
   const [tagClosed, showTagField, setTagClosed] = useDropdown({ initialClosed: true });
 
-  const handleSubmit = useCallback((e) => {
-    e.preventDefault();
-    if (todoData.title.trim()) {
-      createTodo({ ...todoData, id: Date.now() });
-      setTodoData({ ...todoData, title: "", completed: false, time: "", priority: "", tagId: "" });
-      setClosed(true);
-      setPriClosed(true);
-      setTagClosed(true);
-    }
-  }, [setClosed, setPriClosed, setTagClosed, setTodoData, todoData])
+  const setTagId = useCallback(
+    async (tagName) => {
+      const relatedTag = tags.find((tag) => tag.name === tagName);
+        console.log("relatedTag", relatedTag);
+      if (relatedTag) {
+        setTodoData({ ...todoData, tagId: relatedTag.id });
+        console.log(todoData);
+      } else {
+        onTagCreated({ name: tagName });
+        const newRelatedTag = tags.find((tag) => tag.name === tagName);
+        console.log(newRelatedTag);
+        setTodoData({ ...todoData, tagId: newRelatedTag.id });
+      }
+    },
+    [onTagCreated, setTodoData, tags, todoData]
+  );
+
+  const handleSubmit = useCallback(
+   async (e) => {
+      e.preventDefault();
+      if (todoData.title.trim()) {
+        setTagId(todoData.tagName);
+        createTodo({ ...todoData, id: Date.now() });
+        setTodoData({
+          ...todoData,
+          title: "",
+          completed: false,
+          time: "",
+          priority: "",
+          tagId: "",
+          tagName: ""
+        });
+        setClosed(true);
+        setPriClosed(true);
+        setTagClosed(true);
+      }
+    },
+    [setClosed, setPriClosed, setTagClosed, setTagId, setTodoData, todoData]
+  );
 
   return (
     <div className={css.todoArea}>

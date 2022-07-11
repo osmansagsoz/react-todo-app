@@ -7,6 +7,7 @@ import {
   faFireFlameSimple,
   faTag
 } from "@fortawesome/free-solid-svg-icons";
+import { useCallback } from "react";
 
 
 const ExtraField = ({
@@ -21,7 +22,7 @@ const ExtraField = ({
   showTagField
 }) => {
 
-    function handleTimeChange(event) {
+const handleTimeChange = useCallback((event) => {
         const re = /^[0-9:\b]+$/;
         if (event.target.value === '' || re.test(event.target.value)) {
             setTodoData({
@@ -29,7 +30,7 @@ const ExtraField = ({
           [event.target.name] : event.target.value
             })
         }
-    }
+    }, [setTodoData, todoData])
 
   return (
     <div className={css.extraField}>
@@ -121,8 +122,8 @@ const ExtraField = ({
             <input
               type="text"
               placeholder="Type a list tag"
-              name="tagId"
-              value={todoData.tagId}
+              name="tagName"
+              value={todoData.tagName}
               onChange={handleChange}
             />
           </div>

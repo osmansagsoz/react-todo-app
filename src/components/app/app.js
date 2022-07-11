@@ -110,6 +110,8 @@ export const App = () => {
         todoData={todoData}
         handleChange={handleChange}
         setTodoData={setTodoData}
+        tags={tags}
+        onTagCreated={onTagCreated}
       />
       <TodoListArea todos={selectedTagTodos} todoData={todoData} handleChange={handleChange} />
       <Footer />

@@ -9,7 +9,8 @@ const useTodoData = () => {
         completed: false,
         time: "",
         priority: "",
-        tagId: ""
+        tagId: "",
+        tagName: ""
       });
       
       const handleChange = useCallback((event) => {

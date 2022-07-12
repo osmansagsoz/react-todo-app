@@ -8,7 +8,7 @@ export const Header = ({ appState }) => {
         <header>
           <h1 className={css.title}>React Todo App</h1>
           <p className={css.headerP}>{appState}</p>
-          <Loader />
+          {appState === "Loading" ? <Loader /> : null}
           <FontAwesomeIcon icon={faCheckDouble} className={css.icon} />
         </header>
     )

@@ -28,7 +28,7 @@ body {
 }
 /* loader design */
 .loader {
-  display: none;
+  display: flex;
   justify-content: space-around;
   align-items: flex-end;
   width: 80px;

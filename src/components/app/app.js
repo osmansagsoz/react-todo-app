@@ -3,7 +3,7 @@ import AllLists from "../allLists/allLists";
 import { Container } from "../container/container";
 import Footer from "../footer/footer";
 import TodoListArea from "../todoListArea/todoListArea";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { createTag, getAllTags } from "../../services/tags";
 import { getTodos } from "../../services/todos";
 import useTodoData from "../../hooks/useTodoData";
@@ -12,6 +12,7 @@ import useTodoData from "../../hooks/useTodoData";
 export const App = () => {
   const [tags, setTags] = useState();
   const [tagsError, setTagsError] = useState(false);
+  const [appState, setAppState] = useState("");
 
   const [selectedTag, setSelectedTag] = useState({});
 
@@ -19,10 +20,33 @@ export const App = () => {
 
   const [todoData, handleChange, setTodoData] = useTodoData();
 
+  const handleAppState = useMemo(() => {
+    // This is for checking the status of a request
+    // Can be used both for tags, and selectedTagTodos
+    if (tagsError) {
+      // show error
+      setAppState("There was an error!");
+    } else if (tags === undefined) {
+      // loading
+      setAppState("Loading");
+    } else if (tags.length === 0) {
+      // empty
+      setAppState("There are no tags!");
+    } else if (tags.length > 0) {
+      // have data
+      setAppState("Tags data loaded!");
+    }
+  }, [tags, tagsError]);
+
   const onTagCreated = useCallback(async ({ name }) => {
     // Handle errors with try & catch here!
-    const data = await createTag({ name });
-    setTags((prevTags) => [...prevTags, data]);
+    try {
+      const data = await createTag({ name });
+      setTags((prevTags) => [...prevTags, data]);
+    } catch (err) {
+      setTagsError(true);
+      console.log(err);
+    }
   }, []);
 
   const onSelectedTagChange = useCallback(
@@ -35,12 +59,23 @@ export const App = () => {
     [tags]
   );
 
+  //   const onSelectedTodoChange = useCallback(
+  //     (e) => {
+  //         const {name, value, type, checked} = e.target;
+
+  //         setSelectedTagTodos((prevTodos => {
+  //             prevTodos.find(todo => )
+  //             // [name]: type === "checkbox" ? checked : value
+  //         }))
+
+  //     }, []
+  //   )
+
   useEffect(() => {
     getAllTags()
       .then((data) => {
         // Set local tags in state
         setTags(data);
-
         // If we have tags, set initial selected tag
         if (data.length) {
           setSelectedTag(data[0]);
@@ -60,43 +95,9 @@ export const App = () => {
     }
   }, [selectedTag]);
 
-  // This is for checking the status of a request
-  // Can be used both for tags, and selectedTagTodos
-  if (tagsError) {
-    // show error
-  } else if (tags === undefined) {
-    // loading
-  } else if (tags.length === 0) {
-    // empty
-  } else if (tags.length > 0) {
-    // have data
-  }
-
   console.log("tags", tags);
   console.log("selectedTag", selectedTag);
   console.log("selectedTagTodos", selectedTagTodos);
-
-  // const [listData, listChange, setListData] = useListData();
-
-  // const [todos, setTodos] = useState(listData.todos);
-
-  // const addTodo = (todo) => {
-  //   if(!todoData.tag) {
-
-  //   }
-  //   if (listData.listTitle === todoData.tag) {
-  //     setTodos([todo, ...todos]);
-  //     // console.log(todos)
-  //   } else {
-
-  //   }
-  // };
-
-  // const renderList = () => {
-  //   return <TodoList />;
-  // };
-
-  // console.log(todos);
 
   return (
     <div className={css.app}>
@@ -112,8 +113,14 @@ export const App = () => {
         setTodoData={setTodoData}
         tags={tags}
         onTagCreated={onTagCreated}
+        appState={appState}
       />
-      <TodoListArea todos={selectedTagTodos} todoData={todoData} handleChange={handleChange} selectedTag={selectedTag} />
+      <TodoListArea
+        todos={selectedTagTodos}
+        todoData={todoData}
+        handleChange={handleChange}
+        selectedTag={selectedTag}
+      />
       <Footer />
     </div>
   );

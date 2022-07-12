@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFire, faFireFlameCurved, faFireFlameSimple } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useMemo, useState } from "react";
 
-const Todo = ({ todo, todoData, handleChange }) => {
+const Todo = ({ todo, todoData, handleChange, i }) => {
   const priColor = useMemo(() => {
     switch (todo.priority) {
       case "Priority 1":
@@ -34,7 +34,7 @@ const Todo = ({ todo, todoData, handleChange }) => {
       <input
         type="checkbox"
         name="completed"
-        checked={todoData.completed}
+        checked={todo.completed}
         onChange={handleChange}
       />
       <span className={css.customCheckbox}></span>

@@ -14,8 +14,8 @@ const TodoList = ({ todos, todoData, handleChange, selectedTag }) => {
       <div className={css.todoListBody}>
         {todos ? (
           <ul className={css.todos}>
-            {todos.map((todo) => {
-              return <Todo key={todo.id} todo={todo} todoData={todoData} handleChange={handleChange} />;
+            {todos.map((todo, i) => {
+              return <Todo key={todo.id} todo={todo} todoData={todoData} handleChange={handleChange} i={i} />;
             })}
           </ul>
         ) : null}

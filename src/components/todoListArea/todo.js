@@ -1,7 +1,7 @@
 import css from "./todoListArea.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFire, faFireFlameCurved, faFireFlameSimple } from "@fortawesome/free-solid-svg-icons";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 
 const Todo = ({ todo, onTodoChange }) => {
   const priColor = useMemo(() => {

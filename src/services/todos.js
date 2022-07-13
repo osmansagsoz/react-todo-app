@@ -25,3 +25,23 @@ export const getTodos = async (tagId) => {
   const data = await result.json();
   return data;
 };
+
+export const deleteTodos = async (query) => {
+  const result = await fetch(`${todosUrl}/${query}`, {
+    method: 'DELETE',
+  });
+  const data = await result.json();
+  return data;
+}
+
+export const updateTodo = async (todo) => {
+  const result = await fetch(`${todosUrl}/${todo.id}`, {
+    body: JSON.stringify(todo),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    method: "PATCH"
+  });
+  const data = await result.json();
+  return data;
+}

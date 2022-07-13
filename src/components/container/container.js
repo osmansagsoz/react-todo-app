@@ -3,16 +3,14 @@ import { Header } from "./header";
 import { TodoArea } from "./todoArea";
 
 
-export const Container = ({todoData, handleChange, setTodoData, tags, onTagCreated, appState}) => {
+export const Container = ({ tags, onTagCreated, appState, onTodoCreated }) => {
   return (
     <section className={css.container}>
       <Header appState={appState} />
       <TodoArea
-        todoData={todoData}
-        handleChange={handleChange}
-        setTodoData={setTodoData}
         tags={tags}
         onTagCreated={onTagCreated}
+        onTodoCreated={onTodoCreated}
       />
     </section>
   );

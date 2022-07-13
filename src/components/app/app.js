@@ -5,38 +5,38 @@ import Footer from "../footer/footer";
 import TodoListArea from "../todoListArea/todoListArea";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { createTag, getAllTags } from "../../services/tags";
-import { getTodos } from "../../services/todos";
-import useTodoData from "../../hooks/useTodoData";
+import { createTodo, getTodos, updateTodo } from "../../services/todos";
 
 // console.log(css);
 export const App = () => {
   const [tags, setTags] = useState();
   const [tagsError, setTagsError] = useState(false);
-  const [appState, setAppState] = useState("");
 
   const [selectedTag, setSelectedTag] = useState({});
 
   const [selectedTagTodos, setSelectedTagTodos] = useState();
+  const [todosError, setTodosError] = useState(false);
 
-  const [todoData, handleChange, setTodoData] = useTodoData();
-
-  const handleAppState = useMemo(() => {
+  const appState = useMemo(() => {
     // This is for checking the status of a request
     // Can be used both for tags, and selectedTagTodos
-    if (tagsError) {
+    if (tagsError || todosError) {
       // show error
-      setAppState("There was an error!");
-    } else if (tags === undefined) {
+      return "There was an error!";
+    } else if (tags === undefined || selectedTagTodos === undefined) {
       // loading
-      setAppState("Loading");
+      return "Loading";
     } else if (tags.length === 0) {
       // empty
-      setAppState("There are no tags!");
+      return "There are no tags!";
+    } else if (selectedTagTodos.length === 0) {
+      // empty
+      return "There are no todos!";
     } else if (tags.length > 0) {
       // have data
-      setAppState("Tags data loaded!");
+      return "Tags data loaded!";
     }
-  }, [tags, tagsError]);
+  }, [selectedTagTodos, tags, tagsError, todosError]);
 
   const onTagCreated = useCallback(async ({ name }) => {
     // Handle errors with try & catch here!
@@ -45,6 +45,16 @@ export const App = () => {
       setTags((prevTags) => [...prevTags, data]);
     } catch (err) {
       setTagsError(true);
+      console.log(err);
+    }
+  }, []);
+
+  const onTodoCreated = useCallback(async (todo) => {
+    try {
+      const data = await createTodo(todo);
+      setSelectedTagTodos((prevTodos) => [...prevTodos, data]);
+    } catch (err) {
+      setTodosError(true);
       console.log(err);
     }
   }, []);
@@ -59,17 +69,17 @@ export const App = () => {
     [tags]
   );
 
-  //   const onSelectedTodoChange = useCallback(
-  //     (e) => {
-  //         const {name, value, type, checked} = e.target;
-
-  //         setSelectedTagTodos((prevTodos => {
-  //             prevTodos.find(todo => )
-  //             // [name]: type === "checkbox" ? checked : value
-  //         }))
-
-  //     }, []
-  //   )
+  const onTodoChange = useCallback(async (todo) => {
+    console.log(todo, "onTodoChange");
+    setSelectedTagTodos((prev) => {
+      const todoIndex = prev.findIndex((i) => i.id === todo.id);
+      if (todoIndex > -1) {
+        return [...prev.slice(0, todoIndex), todo, ...prev.slice(todoIndex + 1)];
+      }
+      return prev;
+    });
+    await updateTodo(todo);
+  }, []);
 
   useEffect(() => {
     getAllTags()
@@ -108,17 +118,14 @@ export const App = () => {
         tags={tags}
       />
       <Container
-        todoData={todoData}
-        handleChange={handleChange}
-        setTodoData={setTodoData}
         tags={tags}
         onTagCreated={onTagCreated}
         appState={appState}
+        onTodoCreated={onTodoCreated}
       />
       <TodoListArea
         todos={selectedTagTodos}
-        todoData={todoData}
-        handleChange={handleChange}
+        onTodoChange={onTodoChange}
         selectedTag={selectedTag}
       />
       <Footer />

@@ -1,9 +1,9 @@
 import css from "./todoListArea.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFire, faFireFlameCurved, faFireFlameSimple } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
-const Todo = ({ todo, todoData, handleChange, i }) => {
+const Todo = ({ todo, onTodoChange }) => {
   const priColor = useMemo(() => {
     switch (todo.priority) {
       case "Priority 1":
@@ -29,13 +29,17 @@ const Todo = ({ todo, todoData, handleChange, i }) => {
     }
   }, [todo.time]);
 
+  const handleCompletedChange = useCallback((e) => {
+    onTodoChange({...todo, completed: e.target.checked})
+  }, [onTodoChange, todo])
+
   return (
     <li>
       <input
         type="checkbox"
         name="completed"
         checked={todo.completed}
-        onChange={handleChange}
+        onChange={handleCompletedChange}
       />
       <span className={css.customCheckbox}></span>
       <label>

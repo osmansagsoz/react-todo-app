@@ -122,9 +122,24 @@
   .editInput {
     width: 100%;
     height: 100%;
+    color: var(--magenta);
+    border-radius: 0.2em;
+    border: 2px solid transparent;
+    outline: none;
+    box-shadow: 0 0 1px var(--lavender);
+  }
+
+  .editInput:hover {
+    cursor: pointer;
   }
   
-  .showEditForm {
+  .editInput:focus {
+    cursor: text;
+    background-color: white;
+    border-color: var(--purple);
+  }
+  
+  .showEditElement {
     opacity: 100%;
   }
   
@@ -141,10 +156,34 @@
     box-shadow: inset 0 0 0px 1.5px var(--gray);
     margin-right: 2px;
     border-color: var(--gray);
+    position: relative;
+  }
+  .priSelect {
+    position: absolute;
+    right: 4px;
+    scale: 1;
   }
   .timeSpan {
     font-size: 15px;
     padding-right: 2px;
+    position: relative;
+  }
+  .editedTime {
+    position: absolute;
+    width: 40px;
+    left: 0;
+    opacity: 100%;
+    font-size: 13px;
+    color: var(--magenta);
+    border-radius: 0.2em;
+    border: 2px solid transparent;
+    outline: none;
+    box-shadow: 0 0 1px var(--lavender);
+  }
+  .editedTime:focus {
+    cursor: text;
+    background-color: white;
+    border-color: var(--purple);
   }
   .deleteArea {
     display: flex;

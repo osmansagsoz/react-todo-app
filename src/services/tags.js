@@ -19,8 +19,8 @@ export const getAllTags = async () => {
   return data;
 };
 
-export const deleteTag = async (query) => {
-  const result = await fetch(`${tagsUrl}/${query}`, {
+export const deleteTag = async (tag) => {
+  const result = await fetch(`${tagsUrl}/${tag.id}`, {
     method: 'DELETE',
   });
   const data = await result.json();

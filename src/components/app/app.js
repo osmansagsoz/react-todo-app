@@ -4,8 +4,8 @@ import { Container } from "../container/container";
 import Footer from "../footer/footer";
 import TodoListArea from "../todoListArea/todoListArea";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { createTag, getAllTags } from "../../services/tags";
-import { createTodo, getTodos, updateTodo } from "../../services/todos";
+import { createTag, deleteTag, getAllTags } from "../../services/tags";
+import { createTodo, deleteTodos, getTodos, updateTodo } from "../../services/todos";
 
 // console.log(css);
 export const App = () => {
@@ -81,6 +81,29 @@ export const App = () => {
     await updateTodo(todo);
   }, []);
 
+  const onTodoDelete = useCallback(async (todo) => {
+    setSelectedTagTodos((prev) => {
+        const todoIndex = prev.findIndex((i) => i.id === todo.id);
+        if (todoIndex > -1) {
+          return [...prev.slice(0, todoIndex), ...prev.slice(todoIndex + 1)];
+        }
+        return prev;
+      });
+      await deleteTodos(todo);
+  }, [])
+
+  const onListDelete = useCallback(async (selectedTag) => {
+    setTags((prev) => {
+        const tagIndex = prev.findIndex((i) => i.id === selectedTag.id);
+        if (tagIndex > -1) {
+          return [...prev.slice(0, tagIndex), ...prev.slice(tagIndex + 1)];
+        }
+        return prev;
+      });
+      setSelectedTag(tags[0]);
+      await deleteTag(selectedTag);
+  }, [tags])
+
   useEffect(() => {
     getAllTags()
       .then((data) => {
@@ -126,6 +149,8 @@ export const App = () => {
       <TodoListArea
         todos={selectedTagTodos}
         onTodoChange={onTodoChange}
+        onTodoDelete={onTodoDelete}
+        onListDelete={onListDelete}
         selectedTag={selectedTag}
       />
       <Footer />

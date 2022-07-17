@@ -1,12 +1,15 @@
 import css from "./todoListArea.module.css";
 import Todo from "./todo";
-import { deleteTag } from "../../services/tags";
 import { useCallback } from "react";
 
-const TodoListArea = ({ todos, onTodoChange, selectedTag }) => {
+const TodoListArea = ({ todos, onTodoChange, onTodoDelete, selectedTag, onListDelete }) => {
   const onDeleteListClick = useCallback(async () => {
-    deleteTag(selectedTag.id);
-  }, [selectedTag]);
+    onListDelete(selectedTag);
+  }, [onListDelete, selectedTag]);
+
+  const onClearCompletedClick = useCallback(async () => {
+    todos.map(todo => (todo.completed === true ? onTodoDelete(todo) : null))
+  }, [onTodoDelete, todos])
 
   return (
     <section className={css.todoListArea}>
@@ -22,7 +25,7 @@ const TodoListArea = ({ todos, onTodoChange, selectedTag }) => {
         ) : null}
       </div>
       <div className={css.deleteArea}>
-        <button className={css.clearCompleted} aria-label="Clear completed todos">
+        <button className={css.clearCompleted} aria-label="Clear completed todos" onClick={onClearCompletedClick} >
           Clear completed todos
         </button>
         <button className={css.deleteList} aria-label="Delete list" onClick={onDeleteListClick}>

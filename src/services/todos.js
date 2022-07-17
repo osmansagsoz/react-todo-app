@@ -26,8 +26,8 @@ export const getTodos = async (tagId) => {
   return data;
 };
 
-export const deleteTodos = async (query) => {
-  const result = await fetch(`${todosUrl}/${query}`, {
+export const deleteTodos = async (todo) => {
+  const result = await fetch(`${todosUrl}/${todo.id}`, {
     method: 'DELETE',
   });
   const data = await result.json();

@@ -9,7 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useCallback } from "react";
 
-
 const ExtraField = ({
   todoData,
   handleChange,
@@ -19,18 +18,25 @@ const ExtraField = ({
   priClosed,
   showPriField,
   tagClosed,
-  showTagField
+  showTagField,
+  tags
 }) => {
+  const handleTimeChange = useCallback(
+    (event) => {
+      const re = /^[0-9:\b]+$/;
+      if (event.target.value === "" || re.test(event.target.value)) {
+        // const timeParts = event.target.value.split(":");
+        // const date = new Date();
+        // const unix = date.setHours(timeParts[0], timeParts[1]);
 
-const handleTimeChange = useCallback((event) => {
-        const re = /^[0-9:\b]+$/;
-        if (event.target.value === '' || re.test(event.target.value)) {
-            setTodoData({
-                ...todoData,
-          [event.target.name] : event.target.value
-            })
-        }
-    }, [setTodoData, todoData])
+        setTodoData({
+          ...todoData,
+          [event.target.name]: event.target.value
+        });
+      }
+    },
+    [setTodoData, todoData]
+  );
 
   return (
     <div className={css.extraField}>
@@ -118,15 +124,30 @@ const handleTimeChange = useCallback((event) => {
           >
             <FontAwesomeIcon icon={faTag} />
           </button>
-          <div className={cx(css.tagPopper, !tagClosed && css.popperOpen)}>
-            <input
+          {tags ? (
+            <select
+              className={cx(css.tagPopper, !tagClosed && css.popperOpen)}
+              name="tagId"
+              value={todoData.tagId}
+              onChange={handleChange}
+            >
+              {/* <input
               type="text"
               placeholder="Type a list tag"
               name="tagName"
               value={todoData.tagName}
               onChange={handleChange}
-            />
-          </div>
+            /> */}
+              <option value="">--Choose--</option>
+              {tags.map((tag) => {
+                return (
+                  <option key={tag.id} value={tag.id}>
+                    {tag.name}
+                  </option>
+                );
+              })}
+            </select>
+          ) : null}
         </div>
         <button className={css.submitButton}>Add Todo</button>
       </div>

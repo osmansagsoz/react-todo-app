@@ -1,13 +1,12 @@
 const todosUrl = `${process.env.REACT_APP_TODO_API_BASE_URL}/todos`;
 
-export const createTodo = async ({ title, tagId, time, id, completed, priority, tagName }) => {
+export const createTodo = async ({ title, tagId, time, id, completed, priority }) => {
   const result = await fetch(todosUrl, {
     body: JSON.stringify({
       id,
       title,
       completed: false,
       tagId,
-      tagName,
       priority,
       time: time || Date.now() // unix date!!!
     }),

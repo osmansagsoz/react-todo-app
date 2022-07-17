@@ -3,7 +3,7 @@ import ExtraField from "./extraField";
 import { useDropdown } from "../allLists/useDropdown";
 import { useCallback, useState } from "react";
 
-export const TodoArea = ({ tags, onTagCreated, onTodoCreated }) => {
+export const TodoArea = ({ tags, onTodoCreated }) => {
   const [closed, showTimeField, setClosed] = useDropdown({ initialClosed: true });
   const [priClosed, showPriField, setPriClosed] = useDropdown({ initialClosed: true });
   const [tagClosed, showTagField, setTagClosed] = useDropdown({ initialClosed: true });
@@ -14,8 +14,7 @@ export const TodoArea = ({ tags, onTagCreated, onTodoCreated }) => {
     completed: false,
     time: "",
     priority: "",
-    tagId: "",
-    tagName: ""
+    tagId: ""
   });
 
 //   const setTagId = useCallback(
@@ -38,11 +37,11 @@ export const TodoArea = ({ tags, onTagCreated, onTodoCreated }) => {
 
   const handleChange = useCallback(
     (event) => {
-      const { name, value, type, checked } = event.target;
+      const { name, value } = event.target;
 
       setTodoData({
         ...todoData,
-        [name]: type === "checkbox" ? checked : value
+        [name]: value
       });
     },
     [todoData]
@@ -59,8 +58,7 @@ export const TodoArea = ({ tags, onTagCreated, onTodoCreated }) => {
           completed: false,
           time: "",
           priority: "",
-          tagId: "",
-          tagName: ""
+          tagId: ""
         });
         setClosed(true);
         setPriClosed(true);
@@ -91,6 +89,7 @@ export const TodoArea = ({ tags, onTagCreated, onTodoCreated }) => {
             showPriField={showPriField}
             tagClosed={tagClosed}
             showTagField={showTagField}
+            tags={tags}
           />
         </form>
       </div>

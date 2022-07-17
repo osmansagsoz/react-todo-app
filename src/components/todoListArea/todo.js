@@ -52,8 +52,8 @@ const Todo = ({ todo, onTodoChange }) => {
       setIsTimeEditing(true);
       // timeInputRef.current.focus();
     }
-    if(e.currentTarget.name === "priSpan") {
-        setIsPriEditing(true);
+    if (e.currentTarget.name === "priSpan") {
+      setIsPriEditing(true);
     }
   }, []);
 
@@ -80,23 +80,26 @@ const Todo = ({ todo, onTodoChange }) => {
 
   const handleEditedTimeChange = useCallback(
     (e) => {
-      onTodoChange({ ...todo, time: e.target.value });
+      const re = /^[0-9:\b]+$/;
+      if (e.target.value === "" || re.test(e.target.value)) {
+        onTodoChange({ ...todo, time: e.target.value });
+      }
     },
     [onTodoChange, todo]
   );
 
   const onTimeEnterPress = useCallback((e) => {
-    if(e.keyCode === 13) {
-        setIsTimeEditing(false);
-    } 
-  }, [])
+    if (e.keyCode === 13) {
+      setIsTimeEditing(false);
+    }
+  }, []);
 
   const handlePriChange = useCallback(
     (e) => {
-        onTodoChange({ ...todo, priority: e.target.value });
-      },
-      [onTodoChange, todo]
-  )
+      onTodoChange({ ...todo, priority: e.target.value });
+    },
+    [onTodoChange, todo]
+  );
 
   return (
     <li>
@@ -125,7 +128,7 @@ const Todo = ({ todo, onTodoChange }) => {
         </form>
       </label>
       <div className={css.extraWrapper}>
-        <button className={css.priSpan} name="priSpan" onClick={showForEditing} >
+        <button className={css.priSpan} name="priSpan" onClick={showForEditing}>
           {todo.priority && (
             <FontAwesomeIcon
               icon={
@@ -140,10 +143,10 @@ const Todo = ({ todo, onTodoChange }) => {
             />
           )}
           {isPriEditing ? (
-            <select className={css.priSelect} onChange={handlePriChange} onBlur={onFinishedEditing} >
-                <option value="Priority 1" >1</option>
-                <option value="Priority 2" >2</option>
-                <option value="Priority 3" >3</option>
+            <select className={css.priSelect} onChange={handlePriChange} onBlur={onFinishedEditing}>
+              <option value="Priority 1">1</option>
+              <option value="Priority 2">2</option>
+              <option value="Priority 3">3</option>
             </select>
           ) : null}
         </button>

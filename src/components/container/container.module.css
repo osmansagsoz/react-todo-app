@@ -219,9 +219,7 @@
     pointer-events: none;
     position: absolute;
     bottom: -30px;
-    left: -90px;
-  }
-  .tagPopper input {
+    left: -24px;
     color: var(--magenta);
     border-radius: 0.2em;
     border: 2px solid transparent;
@@ -229,14 +227,14 @@
     transition: all 0.2s;
     box-shadow: 0 0 1px var(--lavender);
     padding: 3px;
-    width: 200px;
   }
-  .tagPopper input:hover {
+  
+  .tagPopper:hover {
     cursor: pointer;
     background-color: var(--gray);
   }
   
-  .tagPopper input:focus {
+  .tagPopper:focus {
     cursor: text;
     background-color: white;
     border-color: var(--purple);

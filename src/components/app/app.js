@@ -143,8 +143,8 @@ export const App = () => {
       <Container
         tags={tags}
         onTagCreated={onTagCreated}
-        appState={appState}
         onTodoCreated={onTodoCreated}
+        appState={appState}
       />
       <TodoListArea
         todos={selectedTagTodos}

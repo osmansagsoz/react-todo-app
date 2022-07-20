@@ -96,11 +96,11 @@ export const App = () => {
     setTags((prev) => {
         const tagIndex = prev.findIndex((i) => i.id === selectedTag.id);
         if (tagIndex > -1) {
+            setSelectedTag(tags[tags.length !== 1 ? tags.length - 2 : tags.length - 1]);
           return [...prev.slice(0, tagIndex), ...prev.slice(tagIndex + 1)];
         }
         return prev;
       });
-      setSelectedTag(tags[0]);
       await deleteTag(selectedTag);
   }, [tags])
 
